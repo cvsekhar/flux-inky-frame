@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  flux-inky-frame:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Increase memory for build (helps with large PyTorch downloads)
+      shm_size: '2gb'
+    container_name: flux-inky-frame
+    ports:
+      - "5000:5000"
+    volumes:
+      # OPTION 1 (Default): Named volume managed by Docker
+      # Model cache stored in Docker's volume directory
+      # Survives container deletion, managed automatically
+      - huggingface-cache:/root/.cache/huggingface
+      
+      # OPTION 2 (Current): Bind mount to current directory
+      # Generated images in ./generated_images/ relative to docker-compose.yml
+      # Easy to access, backup, and view
+      - ./generated_images:/app/generated_images
+      
+      # If you want to use a specific absolute path instead:
+      # - /home/youruser/my-images:/app/generated_images
+      
+      # If you want HuggingFace cache on host (instead of named volume):
+      # - ./huggingface-cache:/root/.cache/huggingface
+      # OR with absolute path:
+      # - /home/youruser/.cache/huggingface:/root/.cache/huggingface
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HF_HOME=/root/.cache/huggingface
+      # OpenAI-compatible LLM configuration for prompt refinement
+      - LLM_API_BASE=http://host.docker.internal:11434/v1  # Ollama with /v1 suffix
+      - LLM_MODEL=llama3.2  # Or any model name
+    # Increase shared memory for runtime
+    shm_size: '2gb'
+    restart: unless-stopped
+
+volumes:
+  # Named volume definition - Docker manages the storage location
+  # This is NOT a folder in your project directory
+  # Docker stores it in /var/lib/docker/volumes/ on Linux
+  huggingface-cache:
+    driver: local
