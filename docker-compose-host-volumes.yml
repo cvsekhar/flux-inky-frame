@@ -1,0 +1,26 @@
+version: '3.8'
+
+# Alternative configuration: Both volumes on host filesystem
+# Use this if you want full control over both cache and images
+
+services:
+  flux-inky-frame:
+    build: .
+    container_name: flux-inky-frame
+    ports:
+      - "5000:5000"
+    volumes:
+      # Both using bind mounts (folders on your computer)
+      # Relative paths - creates folders next to docker-compose.yml
+      - ./huggingface-cache:/root/.cache/huggingface
+      - ./generated_images:/app/generated_images
+      
+      # Or use absolute paths:
+      # - /absolute/path/to/huggingface-cache:/root/.cache/huggingface
+      # - /absolute/path/to/generated_images:/app/generated_images
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HF_HOME=/root/.cache/huggingface
+    restart: unless-stopped
+
+# No named volumes section needed when using bind mounts

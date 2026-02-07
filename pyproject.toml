@@ -1,0 +1,16 @@
+[project]
+name = "flux-inky-frame"
+version = "0.1.0"
+description = "FLUX image generator for Inky Frame displays"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "flask>=3.0.0",
+    "torch>=2.0.0",
+    "diffusers>=0.31.0",
+    "transformers>=4.38.0",
+    "accelerate>=0.26.0",
+    "pillow>=10.0.0",
+    "safetensors>=0.4.0",
+    "dspy-ai>=2.4.0",
+]
