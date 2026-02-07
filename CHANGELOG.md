@@ -18,11 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Individual image pair deletion
 - Bulk cleanup functionality
 - `/latest.jpg` endpoint for automated downloads
-- Docker support with CPU and GPU configurations
-- Volume management (named volumes and bind mounts)
 - Comprehensive documentation:
   - README.md - Main project documentation
-  - DOCKER.md - Docker setup and troubleshooting
   - LLM-SETUP.md - Local LLM configuration guide
 - Example environment configuration (.env.example)
 - uv-based dependency management
@@ -36,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Flask web framework
 - PyTorch for model inference
 - Diffusers for FLUX integration
-- DSPy for LLM orchestration
+- DSPy for Prompt Refinement
 - PIL for image processing
 - Single-file Flask application
 - Embedded HTML/CSS/JS (no templates directory)
@@ -45,7 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configurable LLM endpoint (Ollama, LM Studio, vLLM, etc.)
 - OpenAI-compatible API format
 - Environment variable support
-- Docker Compose configurations for different use cases
 
 ### Performance
 - CPU mode: 30-120s per image
@@ -54,4 +50,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Model size: ~8GB FLUX + ~3GB LLM
 - Image quality: JPG at 70% quality
 
-[1.0.0]: https://github.com/yourusername/flux-inky-frame/releases/tag/v1.0.0

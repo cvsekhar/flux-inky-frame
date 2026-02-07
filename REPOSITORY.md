@@ -17,20 +17,10 @@
 - **.env.example** - Environment variables template
 - **requirements.txt** - pip-compatible dependencies (legacy)
 
-### Docker Files
-- **Dockerfile** - Container build configuration (uv-based, Debian slim)
-- **docker-compose.yml** - Default CPU configuration
-- **docker-compose-gpu.yml** - GPU-enabled configuration
-- **docker-compose-host-volumes.yml** - All volumes on host
-- **.dockerignore** - Docker build exclusions
-
 ### Documentation
 - **README.md** - Main project documentation
 - **DOCKER.md** - Complete Docker guide
 - **LLM-SETUP.md** - Local LLM configuration
-- **README-DOCKER.md** - Quick Docker reference
-- **BUILD-RUN-GUIDE.md** - Build troubleshooting
-- **VOLUMES-EXPLAINED.md** - Docker volume management
 - **CHANGELOG.md** - Version history
 - **LICENSE** - MIT License
 
@@ -38,7 +28,6 @@
 - **.gitignore** - Git exclusions (venv, cache, generated images, .env)
 
 ### Scripts
-- **start-docker.sh** - Automated Docker setup script
 - **test_setup.py** - Environment validation script
 - **rotate_image.py** - Standalone image rotation utility
 
@@ -62,16 +51,6 @@ init_model()           # Load FLUX model
 refine_prompt()        # AI prompt enhancement
 generate_image()       # Image generation endpoint
 rotate_and_convert()   # Image rotation utility
-```
-
-### docker-compose.yml
-```yaml
-# Services
-flux-inky-frame:       # Main application
-  - Port: 5000
-  - Volumes: huggingface-cache, generated_images
-  - CPU mode (default)
-  - Environment: LLM_API_BASE, LLM_MODEL
 ```
 
 ### pyproject.toml
@@ -108,15 +87,6 @@ app.py
   ├── .env.example (configuration)
   └── generated_images/ (output)
 
-Dockerfile
-  ├── pyproject.toml (build deps)
-  ├── .python-version (Python version)
-  └── .dockerignore (exclusions)
-
-docker-compose.yml
-  ├── Dockerfile (build)
-  ├── .env (runtime config)
-  └── volumes/ (data persistence)
 ```
 
 ## 🚀 Quick Start Map
@@ -139,14 +109,7 @@ pyproject.toml    .env
 
 1. **README.md** - Start here
    ↓
-2. **DOCKER.md** - If using Docker
-   ↓
-3. **LLM-SETUP.md** - For prompt refinement
-   ↓
-4. **VOLUMES-EXPLAINED.md** - For data management
-   ↓
-5. **BUILD-RUN-GUIDE.md** - If issues arise
-
+2. **LLM-SETUP.md** - For prompt refinement
 ## 🔄 Typical Workflows
 
 ### First Time Setup
@@ -154,20 +117,13 @@ pyproject.toml    .env
 2. Read README.md
 3. Copy .env.example → .env
 4. Read LLM-SETUP.md
-5. Run: `uv run python app.py` or `docker-compose up -d`
+5. Run: `uv run python app.py`
 
 ### Development
 1. Edit app.py
 2. Test locally: `uv run python app.py`
-3. Rebuild Docker: `docker-compose build`
-4. Deploy: `docker-compose up -d`
 
-### Deployment
-1. Read DOCKER.md
-2. Configure .env
-3. Choose docker-compose file
-4. Run: `docker-compose up -d`
-5. Monitor: `docker-compose logs -f`
+
 
 ## 🗂️ Generated/Runtime Files (Not in Git)
 
@@ -209,30 +165,6 @@ if __name__ == '__main__':
     init_model()   # Required: FLUX setup
     app.run()      # Start Flask
 ```
-
-### Docker Entry
-```dockerfile
-# Dockerfile
-CMD [".venv/bin/python", "app.py"]
-```
-
-### Script Entry
-```bash
-# start-docker.sh
-#!/bin/bash
-docker-compose up -d
-docker-compose logs -f
-```
-
-## 📈 Version Control
-
-```
-main
-  ├── df0b861 - Initial commit
-  └── 8159896 - Add CHANGELOG.md
-```
-
-Tags: v1.0.0 (ready to tag)
 
 ## 🔐 Sensitive Files (.gitignore)
 

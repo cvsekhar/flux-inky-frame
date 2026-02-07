@@ -3,7 +3,7 @@ name = "flux-inky-frame"
 version = "0.1.0"
 description = "FLUX image generator for Inky Frame displays"
 readme = "README.md"
-requires-python = ">=3.10,<3.11"
+requires-python = ">=3.10"
 dependencies = [
     "flask>=3.0.0",
     "torch>=2.0.0",
@@ -12,5 +12,9 @@ dependencies = [
     "accelerate>=0.26.0",
     "pillow>=10.0.0",
     "safetensors>=0.4.0",
-    "dspy-ai>=2.4.0",
+    "dspy==3.0.3",
+    "python-dotenv>=1.0.0"
 ]
+[tool.uv.sources]
+diffusers = { git = "https://github.com/huggingface/diffusers.git" }
+
