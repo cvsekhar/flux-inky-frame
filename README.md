@@ -1,4 +1,4 @@
-# FLUX Inky Frame Image Generator
+# FLUX Inky Frame Image Generator (With help from Claude and flux inference code on HF)
 
 A Flask web application for generating AI images optimized for Inky Frame 7.3" e-ink displays using FLUX.2-klein-4B model. Features automatic prompt refinement with local LLMs via DSPy.
 
